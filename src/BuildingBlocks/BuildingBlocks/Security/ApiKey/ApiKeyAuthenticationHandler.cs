@@ -48,7 +48,7 @@ namespace BuildingBlocks.Security.ApiKey
                 return AuthenticateResult.NoResult();
             }
 
-            var existingApiKey = await _getApiKeyQuery.Execute(providedApiKey);
+            var existingApiKey = await _getApiKeyQuery.ExecuteAsync(providedApiKey);
 
             if (existingApiKey != null)
             {

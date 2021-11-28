@@ -8,6 +8,6 @@ namespace BuildingBlocks.Domain
 
     public interface IAggregate<TId>
     {
-        public TId Id { get; }
+        public TId Id { get; init; }
     }
 }

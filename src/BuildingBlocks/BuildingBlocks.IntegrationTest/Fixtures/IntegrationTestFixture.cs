@@ -130,7 +130,7 @@ namespace BuildingBlocks.Test.Fixtures
             });
         }
 
-        public Task<T> FindAsync<T>(Guid id) where T : class
+        public Task<T> FindAsync<T>(long id) where T : class
         {
             return ExecuteDbContextAsync(db => db.Set<T>().FindAsync(id).AsTask());
         }
@@ -138,6 +138,13 @@ namespace BuildingBlocks.Test.Fixtures
         public Task<T> FindFirstAsync<T>() where T : class
         {
             return ExecuteDbContextAsync(db => db.Set<T>().FirstOrDefaultAsync());
+        }
+
+        public override async Task InitializeAsync()
+        {
+            await base.InitializeAsync();
+
+            await ResetState();
         }
     }
 
