@@ -15,7 +15,7 @@ namespace PartnersManagement.Orders.Features.FetchOrderById
 
         public class CachePolicy : ICachePolicy<FetchOrderByIdQuery, FetchOrderByIdQueryResult>
         {
-            public DateTimeOffset? AbsoluteExpirationRelativeToNow => DateTimeOffset.Now.AddMinutes(15);
+            public DateTime? AbsoluteExpirationRelativeToNow => DateTime.Now.AddMinutes(15);
 
             public string GetCacheKey(FetchOrderByIdQuery query)
             {

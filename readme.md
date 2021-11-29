@@ -185,3 +185,15 @@ For running our Apis we need to run bellow command in shell in root of the proje
 ```
 Then after this,our application will be up and running. our API service will be host on http://localhost:5000.
 
+
+### Docker Compose 
+
+We can run this app on docker with this [docker-compose.yaml](./deployments/docker-compose/docker-compose.yaml) file with bellow command in root of application:
+
+``` bash
+docker-compose -f ./deployments/docker-compose/docker-compose.yaml up --build partners.api
+```
+Also docker image is available on the docker hub in this address: [https://hub.docker.com/r/mehdihadeli/partners.api](https://hub.docker.com/r/mehdihadeli/partners.api)
+
+
+
