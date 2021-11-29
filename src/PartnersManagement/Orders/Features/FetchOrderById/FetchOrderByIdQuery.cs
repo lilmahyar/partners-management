@@ -1,3 +1,5 @@
+using System;
+using BuildingBlocks.Caching;
 using BuildingBlocks.Domain;
 
 namespace PartnersManagement.Orders.Features.FetchOrderById
@@ -10,5 +12,15 @@ namespace PartnersManagement.Orders.Features.FetchOrderById
         }
 
         public long Id { get; }
+
+        public class CachePolicy : ICachePolicy<FetchOrderByIdQuery, FetchOrderByIdQueryResult>
+        {
+            public DateTimeOffset? AbsoluteExpirationRelativeToNow => DateTimeOffset.Now.AddMinutes(15);
+
+            public string GetCacheKey(FetchOrderByIdQuery query)
+            {
+                return CacheKey.With(query.GetType(), query.Id.ToString());
+            }
+        }
     }
 }

@@ -1,0 +1,1 @@
+dotnet run --project src/PartnersManagement.Api/PartnersManagement.Api.csproj
