@@ -30,7 +30,7 @@ namespace PartnersManagement.IntegrationTests.Orders
         public async Task valid_create_new_order_command_should_persist_new_order_and_return_correct_id()
         {
             // Arrange
-            var command = new CreateOrderCommand(OrderMocks.PartnerD_OrderDto);
+            CreateOrderCommand command = OrderMocks.PartnerD_OrderDto;
 
             // Act
             var createdOrderResponse = await SendAsync(command, CancellationToken.None);
@@ -45,9 +45,9 @@ namespace PartnersManagement.IntegrationTests.Orders
             createdOrder.Should().NotBeNull();
             createdOrder.Id.Should().Be(createdOrderResponse.Id);
             createdOrder.OrderItems.Any().Should().BeTrue();
-            createdOrder.OrderItems.Count().Should().Be(command.OrderDto.OrderItems.Count());
+            createdOrder.OrderItems.Count().Should().Be(command.OrderItems.Count());
             createdOrder.OrderItems.First().Should().BeOfType<PaidSearchProductOrderItem>();
-            createdOrder.OrderItems.First().ProductType.Should().Be(command.OrderDto.OrderItems.First().ProductType);
+            createdOrder.OrderItems.First().ProductType.Should().Be(command.OrderItems.First().ProductType);
             (createdOrder.OrderItems.First() as PaidSearchProductOrderItem)?.AdWordCampaign.Should().NotBeNull();
         }
     }

@@ -4,6 +4,7 @@ using BuildingBlocks.Web;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PartnersManagement.Orders.Features.CreateOrder.Requests;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace PartnersManagement.Orders.Features.CreateOrder

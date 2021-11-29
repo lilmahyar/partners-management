@@ -6,7 +6,6 @@ namespace PartnersManagement.Orders.Dtos
     {
         public PartnerType Partner { get; init; }
         public long OrderId { get; init; }
-        public string TypeOfOder { get; init; }
         public string SubmittedBy { get; init; }
         public string CompanyId { get; init; }
         public string CompanyName { get; init; }

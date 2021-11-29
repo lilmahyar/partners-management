@@ -10,7 +10,7 @@ using PartnersManagement.Data;
 namespace PartnersManagement.Data.Migrations
 {
     [DbContext(typeof(PartnerManagementDbContext))]
-    [Migration("20211128124623_initial")]
+    [Migration("20211129121759_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

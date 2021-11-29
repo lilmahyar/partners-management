@@ -2,6 +2,7 @@ using AutoMapper;
 using PartnersManagement.Orders.Dtos;
 using PartnersManagement.Orders.Entities;
 using PartnersManagement.Orders.Features.CreateOrder;
+using PartnersManagement.Orders.Features.CreateOrder.Requests;
 
 namespace PartnersManagement.Orders
 {
@@ -25,7 +26,11 @@ namespace PartnersManagement.Orders
                 .IncludeAllDerived()
                 .ConvertUsing<OrderItemToOrderItemDtoConvertor>();
 
-            CreateMap<CreateOrderRequest, CreateOrderCommand>().ConstructUsing(x => new CreateOrderCommand(x.Order));
+            CreateMap<CreateOrderRequest, CreateOrderCommand>();
+            CreateMap<CreateOrderCommand, Order>()
+                .ForMember(x => x.Id, opt => opt.Ignore());
+            CreateMap<OrderItemRequest, OrderItemDto>()
+                .ForMember(x => x.Id, opt => opt.Ignore());
         }
     }
 
