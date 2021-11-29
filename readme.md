@@ -196,4 +196,14 @@ docker-compose -f ./deployments/docker-compose/docker-compose.yaml up --build pa
 Also docker image is available on the docker hub in this address: [https://hub.docker.com/r/mehdihadeli/partners.api](https://hub.docker.com/r/mehdihadeli/partners.api)
 
 
+### Kubernetes
 
+For setup your local environment for using kubernetes you can use different approach but I personally prefer to use [K3s](https://k3s.io/) from rancher team.
+
+For running our app on kubernetes cluster we should apply [db.yaml](./deployments/k8s/db.yaml) and [partners-api.yaml](./deployments/k8s/partners-api.yaml) files with using kubectl in root of the project.
+
+``` bashe
+kubectl apply -f ./deployments/k8s/db.yaml
+kubectl apply -f ./deployments/k8s/partners-api.yaml
+```
+After that our app will up and running with `NodePort Service` of kubernetes and will available on `http://localhost:30080` address.
