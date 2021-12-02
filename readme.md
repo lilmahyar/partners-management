@@ -6,6 +6,10 @@ With using this application the partners of a specific company can order their p
 
 > This app is based on .Net core and vertical slices architecture and I wrote some level of test like unit testing, integration testing and end-to-end testing for this application.
 
+This app hosted on the [heroku](https://heroku.com/) for demo purpose in bellow address:
+
+[https://partners-management.herokuapp.com/swagger](https://partners-management.herokuapp.com/swagger)
+
 ## Application Structure
 
 In this application I used a [mediator pattern](https://dotnetcoretutorials.com/2019/04/30/the-mediator-pattern-in-net-core-part-1-whats-a-mediator/) with using [MediatR](https://github.com/jbogard/MediatR) library in my controllers for a clean and [thin controller](https://codeopinion.com/thin-controllers-cqrs-mediatr/), also instead of using a `application service` class because after some times our controller will depends to different services and this breaks single responsibility principle. 
