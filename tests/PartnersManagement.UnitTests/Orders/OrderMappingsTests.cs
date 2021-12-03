@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using AutoMapper;
 using PartnersManagement.Orders.Dtos;
 using PartnersManagement.Orders.Entities;
+using PartnersManagement.Orders.Entities.Partners;
 using PartnersManagement.UnitTests.Common;
 using Xunit;
 
@@ -40,12 +41,26 @@ namespace PartnersManagement.UnitTests.Orders
                 yield return new object[]
                 {
                     // these types will instantiate with reflection in the future
-                    typeof(Order), typeof(OrderDto)
+                    typeof(PartnerAOrder), typeof(OrderDto)
                 };
+                yield return new object[]
+                {
+                    typeof(PartnerBOrder), typeof(OrderDto)
+                };
+                yield return new object[]
+                {
+                    typeof(PartnerCOrder), typeof(OrderDto)
+                };
+                yield return new object[]
+                {
+                    typeof(PartnerDOrder), typeof(OrderDto)
+                };
+
                 yield return new object[]
                 {
                     typeof(OrderDto), typeof(Order)
                 };
+
                 yield return new object[]
                 {
                     typeof(OrderItemDto), typeof(OrderItem)
@@ -58,6 +73,7 @@ namespace PartnersManagement.UnitTests.Orders
                 {
                     typeof(WebSiteProductOrderItem), typeof(OrderItemDto)
                 };
+
             }
         }
     }

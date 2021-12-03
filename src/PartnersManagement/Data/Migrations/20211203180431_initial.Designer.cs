@@ -10,7 +10,7 @@ using PartnersManagement.Data;
 namespace PartnersManagement.Data.Migrations
 {
     [DbContext(typeof(PartnerManagementDbContext))]
-    [Migration("20211129121759_initial")]
+    [Migration("20211203180431_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,32 +34,12 @@ namespace PartnersManagement.Data.Migrations
                     b.Property<string>("CompanyName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ContactEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ContactFirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ContactLastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ContactMobile")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ContactPhone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ContactTitle")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("ExposureId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Partner")
+                    b.Property<string>("Discriminator")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RelatedOrder")
+                    b.Property<string>("Partner")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SubmittedBy")
@@ -68,12 +48,11 @@ namespace PartnersManagement.Data.Migrations
                     b.Property<string>("TypeOfOrder")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UDAC")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Order", "dbo");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Order");
                 });
 
             modelBuilder.Entity("PartnersManagement.Orders.Entities.OrderItem", b =>
@@ -109,6 +88,61 @@ namespace PartnersManagement.Data.Migrations
                     b.ToTable("OrderItem");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("OrderItem");
+                });
+
+            modelBuilder.Entity("PartnersManagement.Orders.Entities.Partners.PartnerAOrder", b =>
+                {
+                    b.HasBaseType("PartnersManagement.Orders.Entities.Order");
+
+                    b.Property<string>("ContactEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactFirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactLastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactMobile")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactPhone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("PartnerAOrder");
+                });
+
+            modelBuilder.Entity("PartnersManagement.Orders.Entities.Partners.PartnerBOrder", b =>
+                {
+                    b.HasBaseType("PartnersManagement.Orders.Entities.Order");
+
+                    b.HasDiscriminator().HasValue("PartnerBOrder");
+                });
+
+            modelBuilder.Entity("PartnersManagement.Orders.Entities.Partners.PartnerCOrder", b =>
+                {
+                    b.HasBaseType("PartnersManagement.Orders.Entities.Order");
+
+                    b.Property<long>("ExposureId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("RelatedOrder")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UDAC")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("PartnerCOrder");
+                });
+
+            modelBuilder.Entity("PartnersManagement.Orders.Entities.Partners.PartnerDOrder", b =>
+                {
+                    b.HasBaseType("PartnersManagement.Orders.Entities.Order");
+
+                    b.HasDiscriminator().HasValue("PartnerDOrder");
                 });
 
             modelBuilder.Entity("PartnersManagement.Orders.Entities.PaidSearchProductOrderItem", b =>

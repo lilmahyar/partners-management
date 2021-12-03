@@ -157,18 +157,5 @@ namespace PartnersManagement
 
             return endpoints;
         }
-
-        public static void ConfigureOrdersDataModel(this ModelBuilder builder)
-        {
-            builder.Entity<Order>().ToTable("Order", "dbo");
-            builder.Entity<Order>().HasKey(x => x.Id);
-
-            builder.Entity<Order>().HasMany(x => x.OrderItems).WithOne(x => x.Order);
-
-            builder.Entity<Order>().Property(x => x.Partner)
-                .HasConversion(
-                    v => v.ToString(),
-                    v => (PartnerType)Enum.Parse(typeof(PartnerType), v));
-        }
     }
 }

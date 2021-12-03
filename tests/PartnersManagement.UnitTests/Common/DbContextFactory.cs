@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using PartnersManagement.Data;
 using PartnersManagement.Orders;
 using PartnersManagement.Orders.Entities;
+using PartnersManagement.Orders.Entities.Partners;
 
 namespace PartnersManagement.UnitTests.Common
 {
@@ -25,7 +26,7 @@ namespace PartnersManagement.UnitTests.Common
 
         private static void SeedOrders(PartnerManagementDbContext context)
         {
-            var order = new Order()
+            var order = new PartnerAOrder()
             {
                 Partner = PartnerType.PartnerA,
                 CompanyId = "123",

@@ -2,12 +2,13 @@ using System.Collections.Generic;
 using PartnersManagement.Orders;
 using PartnersManagement.Orders.Dtos;
 using PartnersManagement.Orders.Entities;
+using PartnersManagement.Orders.Entities.Partners;
 
 namespace PartnersManagement.IntegrationTests.Mocks
 {
     public static class OrderMocks
     {
-        public static Order PartnerA_Order => new()
+        public static Order PartnerA_Order => new PartnerAOrder()
         {
             Partner = PartnerType.PartnerA,
             CompanyId = "123",
@@ -45,17 +46,10 @@ namespace PartnersManagement.IntegrationTests.Mocks
             }
         };
 
-        public static Order PartnerD_Order => new()
+        public static Order PartnerD_Order => new PartnerDOrder()
         {
             Partner = PartnerType.PartnerD,
             CompanyId = "123",
-            CompanyName = "CompanyA",
-            ContactEmail = "test@yahoo.com",
-            ContactMobile = "5454545",
-            ContactFirstName = "first name test",
-            ContactLastName = "last name test",
-            ContactPhone = "545454545",
-            ContactTitle = "contact title test",
             TypeOfOrder = "order type test",
             SubmittedBy = "submit by test",
             OrderItems = new List<OrderItem>
