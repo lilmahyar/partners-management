@@ -1,7 +1,5 @@
 using System.Threading;
 using System.Threading.Tasks;
-using BuildingBlocks.Web;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PartnersManagement.Orders.Features.CreateOrder.Requests;
@@ -9,9 +7,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace PartnersManagement.Orders.Features.CreateOrder
 {
-    [ApiVersion("1.0")]
-    [Route(BaseApiPath + "/[controller]")]
-    public partial class OrdersController : BaseController
+    public class CreateOrderEndpoint : OrderEndpointBase
     {
         /// <summary>
         /// Create a new order
@@ -22,9 +18,7 @@ namespace PartnersManagement.Orders.Features.CreateOrder
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status409Conflict)]
-        [SwaggerOperation(Summary = "Create a new Order",Description = "Create a new Order")]
-        [Authorize]
+        [SwaggerOperation(Summary = "Create a new Order", Description = "Create a new Order")]
         public async Task<ActionResult> CreateOrderAsync(CreateOrderRequest request,
             CancellationToken cancellationToken)
         {
